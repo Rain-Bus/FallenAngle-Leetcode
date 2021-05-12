@@ -1,9 +1,10 @@
 package com.fallen_angle;
 
 import com.fallen_angle.structures.TreeNode;
-import sun.reflect.generics.tree.Tree;
 
-import java.util.TreeMap;
+/*
+114
+ */
 
 public class Flatten {
 
@@ -17,7 +18,9 @@ public class Flatten {
 
 class FlattenSolution {
 	public void flatten(TreeNode root) {
-		if (root == null) return;
+		if (root == null) {
+			return;
+		}
 		flatten(root.left);
 		flatten(root.right);
 

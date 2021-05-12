@@ -1,7 +1,6 @@
 package com.fallen_angle;
 
 import com.fallen_angle.structures.TreeNode;
-import sun.reflect.generics.tree.Tree;
 
 public class InvertTree {
 	public static void main(String[] args) {

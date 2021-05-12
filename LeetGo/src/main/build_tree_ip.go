@@ -1,8 +1,14 @@
 package main
 
-import . "./structure"
+import (
+	. "./structure"
+	"fmt"
+)
 
-func buildTree(inorder []int, postorder []int) *TreeNode {
+/**
+106
+ */
+func buildTreeIPRecursive(inorder []int, postorder []int) *TreeNode {
 	length := len(postorder)
 	if length == 0 {
 		return nil
@@ -16,8 +22,8 @@ func buildTree(inorder []int, postorder []int) *TreeNode {
 	rightIn := inorder[inIndex+1 : length]
 	leftPost := postorder[0:inIndex]
 	rightPost := postorder[inIndex : length-1]
-	node.Right = buildTree(rightIn, rightPost)
-	node.Left = buildTree(leftIn, leftPost)
+	node.Right = buildTreeIPRecursive(rightIn, rightPost)
+	node.Left = buildTreeIPRecursive(leftIn, leftPost)
 	return node
 }
 
@@ -28,4 +34,31 @@ func getIndex(inorder []int, val int) int {
 		}
 	}
 	return -1
+}
+
+func buildTreeIPIterator(inorder []int, postorder []int) *TreeNode {
+	if len(postorder) == 0 {
+		return nil
+	}
+	root := &TreeNode{Val: postorder[len(postorder)-1]}
+	stack := []*TreeNode{root}
+	inIndex := len(inorder)-1
+	for i := len(postorder)-2; i >= 0; i-- {
+		cur := stack[len(stack)-1]
+		if cur.Val != inorder[inIndex] {
+			cur.Right = &TreeNode{Val: postorder[i]}
+			stack = append(stack, cur.Right)
+		} else {
+			for len(stack) != 0 && stack[len(stack)-1].Val == inorder[inIndex] {
+				cur = stack[len(stack)-1]
+				stack = stack[:len(stack)-1]
+				fmt.Println(cur.Val)
+				inIndex--
+			}
+			cur.Left = &TreeNode{Val: postorder[i]}
+			stack = append(stack, cur.Right)
+		}
+	}
+
+	return root
 }

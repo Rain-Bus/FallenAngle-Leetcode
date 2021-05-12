@@ -2,7 +2,10 @@ package main
 
 import . "./structure"
 
-func buildTreePI(preorder []int, inorder []int) *TreeNode {
+/**
+105
+ */
+func buildTreePIRecursive(preorder []int, inorder []int) *TreeNode {
 	if len(preorder) == 0 {
 		return nil
 	}
@@ -19,10 +22,10 @@ func buildTreePI(preorder []int, inorder []int) *TreeNode {
 	//rightIn = inorder[index + 1: len(inorder)]
 	//leftPre = preorder[1: index+1]
 	//rightPre = preorder[index+1: len(preorder)]
-	//root.Left = buildTree(leftPre, leftIn)
-	//root.Right = buildTree(rightPre, rightIn)
-	root.Left = buildTree(preorder[1:index+1], inorder[0:index])
-	root.Right = buildTree(preorder[index+1:len(preorder)], inorder[index+1:len(inorder)])
+	//root.Left = buildTreeIPRecursive(leftPre, leftIn)
+	//root.Right = buildTreeIPRecursive(rightPre, rightIn)
+	root.Left = buildTreeIPRecursive(preorder[1:index+1], inorder[0:index])
+	root.Right = buildTreeIPRecursive(preorder[index+1:len(preorder)], inorder[index+1:len(inorder)])
 	return root
 }
 
