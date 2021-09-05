@@ -2,6 +2,8 @@ package com.fallen_angle;
 
 import com.fallen_angle.structures.ListNode;
 
+import java.util.LinkedList;
+
 public class ReverseList {
 	public static void main(String[] args) {
 		ListNode testList = ListNode.generateListFromArr(new int[]{1,2,3,4,5});
